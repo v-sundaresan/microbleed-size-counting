@@ -46,11 +46,13 @@ for i in range(len(subjs)):
     occipital = (nib.load(subjs[:-12] + 'occipital_lin.nii.gz').get_data() > 0).astype(float)
     insular = (nib.load(subjs[:-12] + 'insular_lin.nii.gz').get_data() > 0).astype(float)
 
-    insular_dilated_mask = binary_dilation(insular>0, structure=None, iterations=3)
-    frontal_dilated_mask = binary_dilation(frontal>0, structure=None, iterations=5)
-    parietal_dilated_mask = binary_dilation(parietal>0, structure=None, iterations=7)
-    occipital_dilated_mask = binary_dilation(occipital>0, structure=None, iterations=2)
-    temporal_dilated_mask = binary_dilation(temporal>0, structure=None, iterations=2)
+    kernel_size = 3
+
+    insular_dilated_mask = binary_dilation(insular>0, structure=None, iterations=kernel_size)
+    frontal_dilated_mask = binary_dilation(frontal>0, structure=None, iterations=kernel_size)
+    parietal_dilated_mask = binary_dilation(parietal>0, structure=None, iterations=kernel_size)
+    occipital_dilated_mask = binary_dilation(occipital>0, structure=None, iterations=kernel_size)
+    temporal_dilated_mask = binary_dilation(temporal>0, structure=None, iterations=kernel_size)
 
     inpaint_base = np.zeros(brainstem.shape)
     inpaint_base[frontal_dilated_mask > 0] = 9
