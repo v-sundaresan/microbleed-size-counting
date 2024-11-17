@@ -28,7 +28,7 @@ temporal = 11
 occipital = 12
 insula = 13
 '''
-subjs = glob.glob('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/*/mni_2swi.mat')
+subjs = glob.glob('./Data/*/mni_2swi.mat')
 
 mars_values_map = np.zeros([12,len(subjs)])
 for i in range(len(subjs)):
@@ -46,7 +46,7 @@ for i in range(len(subjs)):
         label_lab, n_lab = label(label_lab > 0, return_num=True)
     mars_values_map[:,i] = mars_values
     np.save(subjs[i][:-12] + 'MARS_scale_values',mars_values)
-np.save('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/MARS_rating_map',mars_values_map)
+np.save('./Data/MARS_rating_map',mars_values_map)
         
         
         

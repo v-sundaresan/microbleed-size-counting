@@ -28,7 +28,7 @@ temporal = 11
 occipital = 12
 insula = 13
 '''
-subjs = glob.glob('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/*/mni_2swi.mat')
+subjs = glob.glob('./Data/*/mni_2swi.mat')
 
 conf_matrices = []
 red_conf_matrices = []
@@ -37,7 +37,7 @@ precisions = np.zeros([len(subjs),3])
 f1_measures = np.zeros([len(subjs),3])
 accuracies = np.zeros([len(subjs),2])
 for i in range(len(subjs)):
-    gt = np.round(nib.load('/vols/Scratch/vaanathi/Rob_data/original/labels/' + subjs[i][54:-13] + '_SWI_CMB.nii.gz').get_data())
+    gt = np.round(nib.load('./Labels/' + subjs[i][54:-13] + '_SWI_CMB.nii.gz').get_data())
     atlas = np.round(nib.load(subjs[i][:-12] + 'MARS_scale_parcellation_map_org.nii.gz').get_data())
         for i in range(13):
         def_set = [(i*4)+1,(i*4)+2]
@@ -81,7 +81,7 @@ for i in range(len(subjs)):
 
     np.savez(subjs[i][:-12] + 'MARS_rating_evaluation_measures', conf=conf_matrix, red_conf=red_conf_matrix, sensitivity=sens, precision=prec, f1=np.array([inftent_f1, deep_f1, lobar_f1]), accuracies=np.array([struct_acc, reg_acc]))
 
-np.savez('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/MARS_evaluation_metrics_aggregate',conf=conf_matrices, red_conf=red_conf_matrices, sensitivity=sensitivities, precision=precisions, f1=f1_measures, accuracies=accuracies)
+np.savez('./Data/MARS_evaluation_metrics_aggregate',conf=conf_matrices, red_conf=red_conf_matrices, sensitivity=sensitivities, precision=precisions, f1=f1_measures, accuracies=accuracies)
         
         
         

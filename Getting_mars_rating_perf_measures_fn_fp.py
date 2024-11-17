@@ -28,8 +28,8 @@ temporal = 11
 occipital = 12
 insula = 13
 '''
-subjs = glob.glob('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/*/mni_2swi.mat')
-subjs = glob.glob('/vols/Scratch/vaanathi/MARS_rating_analysis/tich2_predictions/Test_final_labs_*.npy')
+subjs = glob.glob('./Data/*/mni_2swi.mat')
+subjs = glob.glob('./Predictions/Test_final_labs_*.npy')
 conf_matrices = []
 red_conf_matrices = []
 sensitivities = np.zeros([len(subjs),3])
@@ -90,7 +90,7 @@ for i in range(len(subjs)):
                     count_allstruct_array_misses[int(col_id), i] += 1
                 except:
                     count_allstruct_array_misses[int(np.sqrt(col_id)), i] += 1
-np.savez('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/MARS_evaluation_metrics_fps_fns',misses=count_allstruct_array_misses, fps=count_allstruct_array_fps)
+np.savez('./Data/MARS_evaluation_metrics_fps_fns',misses=count_allstruct_array_misses, fps=count_allstruct_array_fps)
         
         
         
