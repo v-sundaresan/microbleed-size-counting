@@ -28,7 +28,7 @@ temporal = 11
 occipital = 12
 insula = 13
 '''
-subjs = glob.glob('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/*/mni_2swi.mat')
+subjs = glob.glob('./Data/*/mni_2swi.mat')
 
 for i in range(len(subjs)):
     brain = (nib.load(subjs[:-13] + '_SWIresampled_111mm_brain_mask.nii.gz') > 0).get_data().astype(float)
