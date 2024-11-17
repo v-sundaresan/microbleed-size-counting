@@ -28,7 +28,7 @@ temporal = 11
 occipital = 12
 insula = 13
 '''
-subjs = glob.glob('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/*/mni_2swi.mat')
+subjs = glob.glob('./Data/*/mni_2swi.mat')
 '''
 brainstem_def = [1,2]
 cerebellum_def = [5,6]
@@ -62,7 +62,7 @@ mars_values_gt_map_definite = []
 for i in range(len(subjs)):
     mars_gt_def_values = np.zeros([13,1])
     mars_gt_pos_values = np.zeros([13,1])
-    gt = np.round(nib.load('/vols/Scratch/vaanathi/Rob_data/original/labels' + subjs[i][54:-13] + '_SWI_CMB.nii.gz').get_data())
+    gt = np.round(nib.load('./Labels' + subjs[i][54:-13] + '_SWI_CMB.nii.gz').get_data())
     
     for ind in range(13):
         def_set = [(ind*4)+1,(ind*4)+2]
@@ -86,8 +86,8 @@ for i in range(len(subjs)):
     mars_values_gt_map_possible.append(mars_gt_pos_values)
     np.save(subjs[i][:-12] + 'MARS_scale_gt_def_values',mars_gt_def_values)
     np.save(subjs[i][:-12] + 'MARS_scale_gt_pos_values',mars_gt_pos_values)
-np.save('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/MARS_rating_gt_def_map',mars_values_gt_map_definite)       
-np.save('/vols/Scratch/vaanathi/CMB_deep_learning/Raw_Rob_data/MARS_rating_gt_pos_map',mars_values_gt_map_possible) 
+np.save('./Data/MARS_rating_gt_def_map',mars_values_gt_map_definite)       
+np.save('./Data/MARS_rating_gt_pos_map',mars_values_gt_map_possible) 
 
 
         
